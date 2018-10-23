@@ -1,1 +1,2 @@
 # AnonimisationOfDBs
+am instalat aplicatiile
