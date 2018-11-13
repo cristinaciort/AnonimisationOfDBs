@@ -44,8 +44,19 @@ public class PreSendMail {
 	public ArrayList getMail(int[] IDs) {
 		connectDB();
 		ArrayList mails = new ArrayList();
-		// parsare cu for pe IDs, pentru fiecare id din lista selectez mailul
-		// din tabela candidati si ce este in resultSet pui in mails
+		try {
+			Statement stmt = con.createStatement();
+			for (int i = 0; i < IDs.length; i++) {
+				ResultSet rs = stmt.executeQuery("select Mail from Candidati where ID"+IDs[i]);
+				mails.add(rs.getInt(0));
+			}
+			// parsare cu for pe IDs, pentru fiecare id din lista selectez
+			// mailul
+			// din tabela candidati si ce este in resultSet pui in mails
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return mails;
 	}
 }
